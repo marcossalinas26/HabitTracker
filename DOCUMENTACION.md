@@ -9,55 +9,57 @@ Este documento explica detalladamente el funcionamiento del código de la aplica
 `App.jsx` gestiona el estado global, la persistencia y la lógica principal.
 
 ### Importaciones y Estado
-- **Líneas 1-8**: Importación de hooks de React, librería de confeti, iconos y componentes.
-- **Líneas 11-14**: Inicialización del estado `habits`. Usa una función que comprueba si hay datos en `localStorage`. Si existen, los convierte de JSON a objeto; si no, inicializa un array vacío.
-- **Líneas 16-19**: Estados para el filtro (`filter`) y el tema visual (`theme`).
-- **Línea 20**: `editingHabit` guarda el hábito que se está editando para pasarlo al formulario.
+- **Líneas 1-8**: Importación de hooks de React, librería de confeti e iconos. Nota: Usamos iconos SVG directos para marcas externas (GitHub/LinkedIn) para evitar dependencias fallidas.
+- **Líneas 12-15**: Inicialización del estado `habits`. Usa una función que lee de `localStorage` para que tus hábitos no se pierdan al cerrar el navegador.
+- **Líneas 18-21**: Estados para el filtro (`all`, `pending`, `completed`) y el tema visual (`theme`).
+- **Línea 22**: `editingHabit` guarda el hábito que se está editando para pasarlo al formulario.
 
-### Persistencia y Efectos
-- **Líneas 22-24**: Guarda automáticamente los hábitos en `localStorage` cada vez que la lista cambia.
-- **Líneas 26-29**: Aplica el atributo `data-theme` al `html` para cambiar entre modo claro y oscuro.
-
-### Funciones Principales
-- **Líneas 40-52**: `addHabit`: Genera un nuevo objeto hábito con un ID basado en el tiempo actual (`Date.now()`).
-- **Líneas 63-95**: `toggleHabit`: Cambia el estado de completado y calcula la racha (`streak`). Si es el mismo día, no sube la racha. Si marcas el último hábito como listo, lanza el confeti.
+### Funciones de Lógica
+- **addHabit**: Genera un nuevo objeto con ID único.
+- **toggleHabit**: Gestiona la lógica de completado. Incluye un sistema de rachas (`streak`) que detecta si el hábito se ha completado en días consecutivos.
+- **triggerConfetti**: Lanza la animación de éxito cuando todos los hábitos están listos.
 
 ---
 
-## 2. HabitForm.jsx (Formulario de Entrada)
+## 2. Componentes (Interfaz de Usuario)
 
-- **Línea 4-9**: Definición de las categorías disponibles con sus iconos y "slugs" para el CSS.
-- **Línea 12-13**: Estados locales para el texto del input y la categoría seleccionada.
-- **Línea 15-23**: `useEffect` que "escucha" si hay un hábito para editar. Si lo hay, rellena el formulario con sus datos.
-- **Línea 25-36**: `handleSubmit`: Evita que la página se recargue, valida que el texto no esté vacío y decide si llamar a `addHabit` (nuevo) o `updateHabit` (edición).
-- **Línea 44-50**: Input de texto vinculado al estado local `text`.
-- **Línea 56-68**: Mapeo del array de categorías para crear los botones. La clase `active` se aplica dinámicamente si la categoría coincide con la seleccionada.
-- **Línea 73-83**: Botón de envío que cambia su texto e icono según si estamos editando o creando.
-- **Línea 84-92**: Botón de "Cancelar" (X) que solo aparece si estamos en modo edición.
+### HabitForm.jsx
+- **Lógica de Edición**: Detecta si hay un hábito cargado para cambiar entre modo "Crear" y "Editar".
+- **Categorías**: Permite seleccionar entre Salud, Trabajo, Personal o General, aplicando colores dinámicos mediante CSS.
 
----
+### HabitItem.jsx
+- **Animaciones**: Usa `framer-motion` para que los hábitos aparezcan y desaparezcan con suavidad.
+- **Layout**: Utiliza una estructura semántica `.habit-card` que agrupa el checkbox, el nombre y las acciones (editar/eliminar).
 
-## 3. HabitItem.jsx (Cada Fila de Hábito)
-
-- **Línea 4-9**: Configuración local para mapear la categoría del hábito con su icono y clase CSS.
-- **Línea 15-21**: Uso de `motion.div` de Framer Motion. Define la animación de entrada (desplazamiento desde la izquierda) y el layout automático.
-- **Línea 23-28**: Checkbox personalizado. Al cambiar, llama a `toggleHabit` del padre.
-- **Línea 31-33**: Badge de la categoría. Usa el `config.slug` para aplicar los colores correctos desde el CSS.
-- **Línea 34-39**: Badge de racha. Solo se renderiza si `habit.streak` es mayor que cero.
-- **Línea 41-43**: Texto del hábito. Aplica la clase `.completed` (tachado) si el hábito está marcado como listo.
-- **Línea 48-62**: Botones de acción. El de edición (`Edit2`) carga el hábito en el estado global, y el de eliminación (`Trash2`) lo borra.
+### StatsCard.jsx
+- Recibe los datos y calcula en tiempo real los contadores para el Dashboard superior.
 
 ---
 
-## 4. StatsCard.jsx (Panel de Estadísticas)
+## 3. Arquitectura CSS (Borderless Glassmorphism)
 
-- **Línea 4-5**: Desestructuración de las props para obtener la lista de hábitos y el contador de completados.
-- **Línea 8-11**: Renderizado de 3 tarjetas (`Total`, `Listos`, `Faltan`) usando la clase semántica `.stat-card` y los iconos de Lucide.
+Hemos diseñado un sistema de estilos propio que no depende de frameworks externos.
+
+- **variables.css**: Aquí reside el ADN visual de la app. Si quieres cambiar el color violeta por otro, solo editas la variable `--primary`.
+- **global.css**: Define el efecto de cristal (`.glass-card`). Hemos eliminado todos los bordes (`border: none`) para que la interfaz se sienta más moderna y fluida.
+- **App.css**: Contiene las clases "humanas" que hacen que el código sea legible:
+    - `.form-group`: Espaciado consistente en formularios.
+    - `.habit-name`: Estilo tipográfico para las tareas.
+    - `.footer-socials`: Estilo para los enlaces de contacto.
 
 ---
 
-## 5. Arquitectura CSS Profesional
+## 4. Decisiones de Diseño
 
-- **variables.css**: Contiene los "Design Tokens" (colores de categorías, colores de marca, sombras).
-- **layout.css**: Reemplaza a Bootstrap con un sistema de Grid y Flexbox propio y ligero.
-- **App.css**: Contiene las clases "humanas" como `.habit-card` o `.form-group`, haciendo que el JSX sea mucho más limpio y fácil de leer.
+1.  **Nombres de Clase Legibles**: Se han eliminado clases crípticas como `mb-3` o `px-4` para usar nombres que cualquier desarrollador pueda entender al leer el HTML.
+2.  **Iconos Robustos**: Al usar SVGs directos en el footer, nos aseguramos de que los enlaces sociales siempre se vean correctamente, independientemente de las actualizaciones de librerías externas.
+3.  **Variable de Progreso**: El ancho de la barra de progreso se gestiona mediante la variable CSS `--progress-width`, lo que permite animaciones más suaves gestionadas directamente por el navegador.
+
+---
+
+## 5. Mantenimiento
+
+Para añadir una nueva categoría:
+1. Añádela al array `categories` en `HabitForm.jsx`.
+2. Añade su color correspondiente en `variables.css`.
+3. Define sus estilos de color en `App.css` bajo la clase `.category-tag.[tu-categoria]`.

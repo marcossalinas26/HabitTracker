@@ -1,73 +1,62 @@
-# React + TypeScript + Vite
+# 🚀 Habit Hub - Habit Tracker Premium
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Habit Hub** es una aplicación de seguimiento de hábitos moderna, rápida y elegante, diseñada para ayudarte a construir mejores rutinas diarias. Construida con **React**, **Framer Motion** y un sistema de diseño personalizado basado en **Glassmorphism**.
 
-Currently, two official plugins are available:
+## ✨ Características Principales
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- 💎 **Diseño Premium**: Interfaz moderna basada en Glassmorphism (efecto cristal) sin dependencias de frameworks pesados como Bootstrap.
+- 📊 **Dashboard de Estadísticas**: Visualiza de un vistazo tus hábitos totales, completados y pendientes.
+- 🏆 **Sistema de Rachas**: Mantén la motivación con el contador de rachas (streaks) y celebraciones con confeti al completar el día.
+- 📁 **Categorización Inteligente**: Organiza tus hábitos en categorías (Salud, Trabajo, Personal, General) con iconos dinámicos.
+- 🌓 **Modo Oscuro/Claro**: Soporte nativo para temas con persistencia en el navegador.
+- 📱 **Responsive & Animado**: Experiencia fluida en cualquier dispositivo gracias a Framer Motion.
+- 💾 **Persistencia Local**: Tus datos se guardan automáticamente en tu navegador.
 
-## React Compiler
+## 🛠️ Tecnologías Utilizadas
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **React 19**: Biblioteca principal para la interfaz de usuario.
+- **Vite**: Herramienta de construcción ultra rápida.
+- **Lucide React**: Iconografía moderna y minimalista.
+- **Framer Motion**: Animaciones fluidas y transiciones de estado.
+- **Canvas Confetti**: Efectos visuales para celebraciones.
+- **Custom CSS Architecture**: Sistema de diseño basado en variables de CSS y clases semánticas.
 
-## Expanding the ESLint configuration
+## 🚀 Instalación y Uso
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+1. **Clonar el repositorio:**
+   ```bash
+   git clone https://github.com/marcossalinas26/HabitTracker.git
+   cd HabitTracker
+   ```
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+2. **Instalar dependencias:**
+   ```bash
+   npm install
+   ```
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+3. **Iniciar el servidor de desarrollo:**
+   ```bash
+   npm run dev
+   ```
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+4. **Construir para producción:**
+   ```bash
+   npm run build
+   ```
+
+## 📂 Estructura del Proyecto
+
+```text
+src/
+├── components/     # Componentes modulares (Form, List, Stats, etc.)
+├── styles/         # Sistema de diseño (Variables, Global, Layout)
+├── App.jsx         # Lógica principal y gestión de estado
+└── main.jsx        # Punto de entrada de la aplicación
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 📝 Documentación Adicional
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Para un análisis detallado del código línea por línea y de las decisiones de arquitectura, consulta el archivo [DOCUMENTACION.md](./DOCUMENTACION.md).
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+---
+Desarrollado con ❤️ por [Marcos Salinas](https://github.com/marcossalinas26)
