@@ -1,0 +1,37 @@
+:root {
+  --primary: #7c3aed;
+  --primary-hover: #6d28d9;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  --bg-gradient: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  --card-bg: rgba(255, 255, 255, 0.8);
+  --text-main: #1e293b;
+  --text-muted: #64748b;
+  --border-color: rgba(226, 232, 240, 0.8);
+  --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+  --font-main: 'Outfit', system-ui, -apple-system, sans-serif;
+  --radius-lg: 24px;
+  --radius-md: 12px;
+  --radius-sm: 8px;
+}
+
+[data-theme="dark"] {
+  --primary: #a78bfa;
+  --primary-hover: #c4b5fd;
+  --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  --card-bg: rgba(30, 41, 59, 0.7);
+  --text-main: #f1f5f9;
+  --text-muted: #94a3b8;
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+
+  /* Category Colors */
+  --cat-general: #7c3aed;
+  --cat-general-bg: rgba(124, 58, 237, 0.1);
+  --cat-salud: #ef4444;
+  --cat-salud-bg: rgba(239, 68, 68, 0.1);
+  --cat-trabajo: #3b82f6;
+  --cat-trabajo-bg: rgba(59, 130, 246, 0.1);
+  --cat-personal: #10b981;
+  --cat-personal-bg: rgba(16, 185, 129, 0.1);
+}
