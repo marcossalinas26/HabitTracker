@@ -14,16 +14,6 @@
   --radius-lg: 24px;
   --radius-md: 12px;
   --radius-sm: 8px;
-}
-
-[data-theme="dark"] {
-  --primary: #a78bfa;
-  --primary-hover: #c4b5fd;
-  --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-  --card-bg: rgba(30, 41, 59, 0.7);
-  --text-main: #f1f5f9;
-  --text-muted: #94a3b8;
-  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
 
   /* Category Colors */
   --cat-general: #7c3aed;
@@ -34,4 +24,14 @@
   --cat-trabajo-bg: rgba(59, 130, 246, 0.1);
   --cat-personal: #10b981;
   --cat-personal-bg: rgba(16, 185, 129, 0.1);
+}
+
+[data-theme="dark"] {
+  --primary: #a78bfa;
+  --primary-hover: #c4b5fd;
+  --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  --card-bg: rgba(30, 41, 59, 0.7);
+  --text-main: #f1f5f9;
+  --text-muted: #94a3b8;
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
 }

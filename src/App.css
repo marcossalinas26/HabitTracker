@@ -92,18 +92,22 @@
 /* Specific Category Actives */
 .category-item.general.active {
   color: var(--cat-general);
+  background-color: var(--cat-general-bg);
 }
 
 .category-item.salud.active {
   color: var(--cat-salud);
+  background-color: var(--cat-salud-bg);
 }
 
 .category-item.trabajo.active {
   color: var(--cat-trabajo);
+  background-color: var(--cat-trabajo-bg);
 }
 
 .category-item.personal.active {
   color: var(--cat-personal);
+  background-color: var(--cat-personal-bg);
 }
 
 .form-actions {
